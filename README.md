@@ -36,6 +36,26 @@ void circular_container( )
     }
 }
 ```
+Adding 9 elements to a container of capacity = 5
+[ 0 ]
+[ 0 1 ]
+[ 0 1 2 ]
+[ 0 1 2 3 ]
+[ 0 1 2 3 4 ]
+[ 1 2 3 4 5 ]
+[ 2 3 4 5 6 ]
+[ 3 4 5 6 7 ]
+[ 4 5 6 7 8 ]
+Remove the last three
+[ 4 5 ]
+Append three more !
+[ 4 5 100 200 300 ]
+Add four and remove one several times
+[ -2 -1 0 101 ]
+[ -1 0 1 102 ]
+[ 0 1 2 103 ]
+[ 1 2 3 104 ]
+
 
 And the iterator:
 
