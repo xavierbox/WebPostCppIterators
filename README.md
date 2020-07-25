@@ -3,7 +3,7 @@
 
 This repo is in support to an online post on C++ iterators. 
 The project includes a circular container, which is not available in the STL, and a STL-compliant iterator for it. 
-The STL algorithms would work seamlessly with our container. the following code is an exmaple on the use of the 
+The STL algorithms would work seamlessly with our container. The following fragment of code is an exmaple on the use of the 
 container:
 
 ```
