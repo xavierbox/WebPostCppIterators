@@ -6,6 +6,11 @@
 #include <algorithm>
 #include <numeric>
 #include <iterator>
+#include <chrono>
+
+#include <deque>           
+#include <list>           
+#include <queue>   
 
 #include "IntWrapper.h"
 #include "IntIterator.h"
@@ -127,9 +132,50 @@ void circular_container_iterator( )
     cout << endl;
 }
 
+void test_queue( )
+{
+    {
+        std::deque<int> stl_deque( 10000, 0 );     // two ints with a value of 100    
+        std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now( );
+
+        for(int n = 0; n < 10000; n++)
+        {
+            stl_deque.pop_front( );
+            stl_deque.push_back( n );
+            //auto max_value_queue = max_element( stl_deque.begin( ), stl_deque.end( ) );
+        }
+        size_t size = stl_deque.size( );
+        auto first_element = stl_deque[0];
+        auto last_element = stl_deque[size - 1];
+
+        std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now( );
+        cout << "size " << size << " first: " << first_element << " last: " << last_element << endl;
+        cout << "Time difference = " << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count( ) << "[ms]" << std::endl;
+    }
+    /////
+    cout << endl;
+
+
+    std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now( );
+    Containers::CircularContainer<int, 10000> container;
+    for(int n = 0; n < 10000; n++)
+    {
+        container.push_back( n );
+        //auto max_value_container = max_element( container.begin( ), container.end( ) );
+
+    }
+
+    std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now( );
+    cout << "size " << 10000 << " first: " << container.at( 0 ) << " last: " << container.at( container.size( ) - 1 ) << endl;
+    cout << "Time difference = " << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count( ) << "[ms]" << std::endl;
+
+
+}
+
+
 int main( )
 {
-    int option = 6;
+    int option = 7;
 
     switch(option)
     {
@@ -166,10 +212,15 @@ int main( )
 
     case 6:
     {
-        circular_container_iterator();
+        circular_container_iterator( );
         break;
     }
 
+    case 7:
+    {
+        test_queue( );
+        break;
+    }
 
     default:
         break;

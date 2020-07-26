@@ -250,6 +250,21 @@ namespace Containers
         {
             return const_circular_iterator( *this, _size );
         }
+        reference operator [] ( int n ) const
+        {
+            return get( n );
+        }
+
+        reference operator [] ( int n )
+        {
+            return get( n );
+        }
+
+        inline const value_type at( int n ) const
+        {
+            auto v = real_index( n );
+            return _c.at( v );
+        }
 
     private:
 
@@ -268,22 +283,6 @@ namespace Containers
         inline int move_left( int pos ) const
         {
             return pos - 1 < 0 ? _capacity - 1 : pos - 1;
-        }
-
-        reference operator [] ( int n ) const
-        {
-            return get( n );
-        }
-
-        reference operator [] ( int n )
-        {
-            return get( n );
-        }
-
-        inline const value_type at( int n ) const
-        {
-            auto v = real_index( n );
-            return _c.at( v );
         }
 
         int real_index( int n ) const
